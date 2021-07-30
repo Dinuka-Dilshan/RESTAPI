@@ -41,7 +41,13 @@ app.post("/articles",(req,res)=>{
         content: req.body.content
     });
 
-    article.save();
+    article.save((error)=>{
+        if(!error){
+            res.send("Insert successfull");
+        }else{
+            res.send(err);
+        }
+    });
 });
 
 app.listen(3000,()=>{
