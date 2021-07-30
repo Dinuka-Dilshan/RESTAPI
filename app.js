@@ -34,8 +34,14 @@ app.get("/articles",(req,res)=>{
 
 });
 
-app.post("/",(req,res)=>{
-    res.redirect("/");
+app.post("/articles",(req,res)=>{
+    
+    const article = new Article({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+    article.save();
 });
 
 app.listen(3000,()=>{
