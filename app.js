@@ -21,6 +21,8 @@ const articleSchema = new mongoose.Schema({
 const Article = new mongoose.model('Article',articleSchema);
 
 //chained routes
+/////////////////////////////////////////////routes for all articles///////////////////////////////////////////
+
 app.route('/articles').get((req,res)=>{
     
     Article.find({},(error,foundArticles)=>{
@@ -61,6 +63,25 @@ app.route('/articles').get((req,res)=>{
     })
 
 });
+
+/////////////////////////////////////////////routes for a specific article ///////////////////////////////////////////
+
+
+app.route('/articles/:articleTitle')
+
+.get((req,res)=>{
+
+    Article.findOne({title:req.params.articleTitle},(error,foundArticle)=>{
+        if(foundArticle){
+            res.send(foundArticle);
+        }else{
+            res.send("no such article found");
+        }
+    });
+
+});
+
+
 
 
 
