@@ -111,6 +111,21 @@ app.route('/articles/:articleTitle')
         }
     );
 
+})
+
+.delete((req,res)=>{
+
+    Article.deleteOne(
+        {title:req.params.articleTitle},
+        (error,result)=>{
+            if(error){
+                res.send(error);
+            }else{
+                res.send(result);
+            }
+        }
+    );
+
 });
 
 
