@@ -95,6 +95,22 @@ app.route('/articles/:articleTitle')
         }
     );
 
+})
+
+.patch((req,res)=>{
+
+    const response = Article.updateOne(
+        {title:req.params.articleTitle},
+        {$set:req.body},
+        (error,result)=>{
+            if(!error){
+                res.send(result.nModified+" articles updated");
+            }else{
+                res.send(error);
+            }
+        }
+    );
+
 });
 
 
